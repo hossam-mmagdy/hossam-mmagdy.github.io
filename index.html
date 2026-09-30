@@ -1,21 +1,139 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hossam Mohamed Magdy | Physics Researcher</title><meta name="description" content="Physicist working on quantum optimization, machine-learning simulation of materials and quantum hardware."><meta property="og:title" content="Hossam Mohamed Magdy | Physics Researcher"><meta name="theme-color" content="#070b14"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body data-p="index.html"><header id="nav"></header><main>
-<div class="w hero"><div><div class="ph"><div>HM<img src="img/hossam.jpg" alt="Hossam Mohamed Magdy" onerror="this.remove()"></div></div>
-<h1>Hossam Mohamed Magdy</h1><p class="role">Physicist · BSc Physics, Aswan University, 2026</p>
-<p class="lead">How do we build quantum technology that works in the lab, not only in theory? I work between computation and hardware.</p>
-<div class="btns"><a class="bt p" href="research.html">Explore research</a><a class="bt" href="files/cv.pdf">Download CV</a><a class="bt" href="contact.html">Get in touch</a></div>
-<p class="now"><b>Currently</b> · applying for MSc and PhD positions in quantum hardware, advanced materials and quantum soft robotics.</p></div>
-<canvas id="bloch" aria-label="Animated Bloch sphere with a precessing qubit state"></canvas></div>
-<div class="w"><div class="st rv"><div><b>88.65%</b><span>cumulative grade, Excellent with Honours</span></div><div><b>24</b><span>qubits simulated in the thesis</span></div><div><b>120+</b><span>undergraduate laboratory sessions</span></div><div><b>1st</b><span>university-wide undergraduate research award</span></div></div></div>
-<section><div class="w"><h2 class="rv">Selected research</h2><p class="sub rv">Three projects, each with a question, a method and an honest account of what the evidence supports.</p>
-<div class="g3">
-<a class="cd rv" href="research.html#qaoa"><div class="im"><canvas data-art="qubo"></canvas></div><div class="tx"><span class="tag">Undergraduate thesis</span><h3>Quantum optimization for soft catheters</h3><p>Trajectory control as a QUBO, solved with linear-ramp and warm-start QAOA on 24 simulated qubits.</p></div></a>
-<a class="cd rv" href="research.html#hgo"><div class="im"><img src="img/hgo-4.jpg" alt="HgO adsorption dashboard"></div><div class="tx"><span class="tag">JINR · first-author manuscript</span><h3>HgO on gold, with uncertainty</h3><p>Two machine-learning force fields benchmarked on Au(111), including where they cannot be trusted.</p></div></a>
-<a class="cd rv" href="research.html#apex"><div class="im"><canvas data-art="apex"></canvas></div><div class="tx"><span class="tag">Patent registration in progress</span><h3>APEX solar screen</h3><p>A multifunctional screen that turns heat and UV losses into energy, modelled in COMSOL.</p></div></a>
-</div></div></section>
-<section style="background:var(--bg2)"><div class="w two"><div><h2 class="rv">Why physics</h2></div><div class="rv"><p>It began in preparatory school with a lesson on the atom, and a Russian nuclear-physics textbook my brother brought home. When scholarships in other fields were on offer, I chose pure physics.</p><p>Quantum mechanics led me to quantum computing, and then to the question that shapes my work: what does it take for quantum technology to work outside a simulation? That means noise, materials, control and honest uncertainty.</p><p><a href="journey.html">Read the full journey →</a></p></div></div></section>
-<section><div class="w"><h2 class="rv">Endorsements</h2><p class="sub rv">Full letters available on request.</p><div class="g3">
-<blockquote class="rv">“Hossam does not wait for opportunities. He creates them.”<cite>Dr. Ibrahim Ali · Professor of Physics, Aswan University</cite></blockquote>
-<blockquote class="rv">“He is a prototype of the modern physicist-inventor.”<cite>Prof. Ayman El-Amin · Head of Physics, Aswan University</cite></blockquote>
-<blockquote class="rv">“Top 1% I have encountered in intellectual maturity, cognitive flexibility, and research potential.”<cite>Prof. Amal Hemdan · Theoretical Physics, Aswan University</cite></blockquote>
-</div><!-- publish quotes only with each professor's written permission --></div></section>
-<section style="text-align:center;background:var(--bg2)"><div class="w"><h2 class="rv">Working on quantum hardware, materials or soft robotics?</h2><p class="sub rv" style="margin-inline:auto">I would be glad to hear from you.</p><a class="bt p" href="contact.html">Send a message</a></div></section></main><footer id="ft"></footer><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hossam Mohamed Magdy | Physics Researcher</title>
+  <meta name="description" content="Physicist working on quantum optimization, machine-learning simulation of materials and quantum hardware.">
+  <meta property="og:title" content="Hossam Mohamed Magdy | Physics Researcher">
+  <meta name="theme-color" content="#070b14">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Anti-flicker script for Theme Switcher -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
+</head>
+<body data-p="index.html">
+  <header id="nav"></header>
+
+  <main>
+    <!-- Hero Section -->
+    <div class="w hero">
+      <div>
+        <div class="ph">
+          <div>HM<img src="img/hossam.jpg" alt="Hossam Mohamed Magdy" onerror="this.remove()"></div>
+        </div>
+        <h1>Hossam Mohamed Magdy</h1>
+        <p class="role">Physicist · BSc Physics, Aswan University, 2026</p>
+        <p class="lead">How do we build quantum technology that works in the lab, not only in theory? I work between computation and hardware.</p>
+        <div class="btns">
+          <a class="bt p" href="research.html">Explore research</a>
+          <a class="bt" href="files/cv.pdf">Download CV</a>
+          <a class="bt" href="contact.html">Get in touch</a>
+        </div>
+        <p class="now"><b>Currently</b> · applying for MSc and PhD positions in quantum hardware, advanced materials and quantum soft robotics.</p>
+      </div>
+      <canvas id="bloch" aria-label="Animated Bloch sphere with a precessing qubit state"></canvas>
+    </div>
+
+    <!-- Key Metrics Banner -->
+    <div class="w">
+      <div class="st rv">
+        <div><b>88.65%</b><span>cumulative grade, Excellent with Honours</span></div>
+        <div><b>24</b><span>qubits simulated in the thesis</span></div>
+        <div><b>120+</b><span>undergraduate laboratory sessions</span></div>
+        <div><b>1st</b><span>university-wide undergraduate research award</span></div>
+      </div>
+    </div>
+
+    <!-- Selected Research Section -->
+    <section>
+      <div class="w">
+        <h2 class="rv">Selected research</h2>
+        <p class="sub rv">Three projects, each with a question, a method and an honest account of what the evidence supports.</p>
+        <div class="g3">
+          <a class="cd rv" href="research.html#qaoa">
+            <div class="im"><canvas data-art="qubo"></canvas></div>
+            <div class="tx">
+              <span class="tag">Undergraduate thesis</span>
+              <h3>Quantum optimization for soft catheters</h3>
+              <p>Trajectory control as a QUBO, solved with linear-ramp and warm-start QAOA on 24 simulated qubits.</p>
+            </div>
+          </a>
+          <a class="cd rv" href="research.html#hgo">
+            <div class="im"><img src="img/hgo-4.jpg" alt="HgO adsorption dashboard"></div>
+            <div class="tx">
+              <span class="tag">JINR · first-author manuscript</span>
+              <h3>HgO on gold, with uncertainty</h3>
+              <p>Two machine-learning force fields benchmarked on Au(111), including where they cannot be trusted.</p>
+            </div>
+          </a>
+          <a class="cd rv" href="research.html#apex">
+            <div class="im"><canvas data-art="apex"></canvas></div>
+            <div class="tx">
+              <span class="tag">Patent registration in progress</span>
+              <h3>APEX solar screen</h3>
+              <p>A multifunctional screen that turns heat and UV losses into energy, modelled in COMSOL.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Physics Section -->
+    <section style="background:var(--bg2)">
+      <div class="w two">
+        <div><h2 class="rv">Why physics</h2></div>
+        <div class="rv">
+          <p>It began in preparatory school with a lesson on the atom, and a Russian nuclear-physics textbook my brother brought home. When scholarships in other fields were on offer, I chose pure physics.</p>
+          <p>Quantum mechanics led me to quantum computing, and then to the question that shapes my work: what does it take for quantum technology to work outside a simulation? That means noise, materials, control and honest uncertainty.</p>
+          <p><a href="journey.html">Read the full journey →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Endorsements Section -->
+    <section>
+      <div class="w">
+        <h2 class="rv">Endorsements</h2>
+        <p class="sub rv">Full letters available on request.</p>
+        <div class="g3">
+          <blockquote class="rv">
+            “Hossam does not wait for opportunities. He creates them.”
+            <cite>Dr. Ibrahim Ali · Professor of Physics, Aswan University</cite>
+          </blockquote>
+          <blockquote class="rv">
+            “He is a prototype of the modern physicist-inventor.”
+            <cite>Prof. Ayman El-Amin · Head of Physics, Aswan University</cite>
+          </blockquote>
+          <blockquote class="rv">
+            “Top 1% I have encountered in intellectual maturity, cognitive flexibility, and research potential.”
+            <cite>Prof. Amal Hemdan · Theoretical Physics, Aswan University</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section style="text-align:center;background:var(--bg2)">
+      <div class="w">
+        <h2 class="rv">Working on quantum hardware, materials or soft robotics?</h2>
+        <p class="sub rv" style="margin-inline:auto">I would be glad to hear from you.</p>
+        <a class="bt p" href="contact.html">Send a message</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="ft"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
