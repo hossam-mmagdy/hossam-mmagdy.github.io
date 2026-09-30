@@ -17,7 +17,7 @@ const P = {
 
 const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`;
 
-/* Theme Toggle Logic */
+/* Theme Toggle Logic - Runs immediately to prevent flash of wrong theme */
 const initTheme = () => {
   const savedTheme = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", savedTheme);
@@ -39,40 +39,114 @@ const so = () => `<div class="so">
   ${C.github ? `<a href="${C.github}" aria-label="GitHub" target="_blank" rel="noopener">${ic("github")}</a>` : ""}
 </div>`;
 
-/* Header & Footer Generation */
-const pg = document.body.dataset.p || "";
-const L = [["index.html", "Home"], ["research.html", "Research"], ["journey.html", "Beyond Research"], ["contact.html", "Contact"]];
+/* Main DOM Initialization */
+const initDOM = () => {
+  /* Safely get page identifier */
+  const pg = (document.body && document.body.dataset.p) ? document.body.dataset.p : "";
+  const L = [["index.html", "Home"], ["research.html", "Research"], ["journey.html", "Journey"], ["contact.html", "Contact"]];
 
-const navEl = document.getElementById("nav");
-if (navEl) {
-  const isLight = document.documentElement.getAttribute("data-theme") === "light";
-  navEl.innerHTML = `<div class="w">
-    <a class="logo" href="index.html"><img src="icon.svg" alt=""><span>Hossam M. Magdy</span></a>
-    <nav class="mn">${L.map(l => `<a href="${l[0]}"${l[0].startsWith(pg) ? ' class="on"' : ""}>${l[1]}</a>`).join("")}</nav>
-    <div style="display:flex;align-items:center;gap:10px;">
-      ${so()}
-      <button id="tb" class="ib" aria-label="Toggle Theme" onclick="toggleTheme()">${ic(isLight ? "moon" : "sun")}</button>
-    </div>
-  </div>`;
-}
+  /* Header Generation */
+  const navEl = document.getElementById("nav");
+  if (navEl) {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    navEl.innerHTML = `<div class="w">
+      <a class="logo" href="index.html"><span>Hossam Mohamed</span></a>
+      <nav class="mn">${L.map(l => `<a href="${l[0]}"${(pg && l[0].startsWith(pg)) ? ' class="on"' : ""}>${l[1]}</a>`).join("")}</nav>
+      <div style="display:flex;align-items:center;gap:10px;">
+        ${so()}
+        <button id="tb" class="ib" aria-label="Toggle Theme" onclick="toggleTheme()">${ic(isLight ? "moon" : "sun")}</button>
+      </div>
+    </div>`;
+  }
 
-const ftEl = document.getElementById("ft");
-if (ftEl) {
-  ftEl.innerHTML = `<div class="w"><span>© 2026 Hossam M. Magdy · Aswan, Egypt</span>${so()}</div>`;
-}
+  /* Footer Generation */
+  const ftEl = document.getElementById("ft");
+  if (ftEl) {
+    ftEl.innerHTML = `<div class="w"><span>© 2026 Hossam Mohamed · Aswan, Egypt</span>${so()}</div>`;
+  }
 
-/* Intersection Observer for Animations */
-document.querySelectorAll(".rv").forEach(el => {
-  const o = new IntersectionObserver(e => {
-    if (e[0].isIntersecting) {
-      el.classList.add("in");
-      o.disconnect();
+  /* Intersection Observer for Animations */
+  document.querySelectorAll(".rv").forEach(el => {
+    const o = new IntersectionObserver(e => {
+      if (e[0].isIntersecting) {
+        el.classList.add("in");
+        o.disconnect();
+      }
+    }, { threshold: .1 });
+    o.observe(el);
+  });
+
+  /* Research figures drawn on Canvas */
+  document.querySelectorAll("canvas[data-art]").forEach(c => {
+    const x = c.getContext("2d"), W = c.width = 800, H = c.height = 500, k = c.dataset.art;
+    x.fillStyle = "#0a1020"; x.fillRect(0, 0, W, H); x.font = "15px Inter,sans-serif";
+    if (k == "qubo") {
+      const n = 24, s = 17, ox = (W - n * s) / 2, oy = (H - n * s) / 2;
+      for (let i = 0; i < n; i++) for (let j = 0; j <= i; j++) {
+        const v = Math.abs(Math.sin(i * 12.99 + j * 78.2) * 43758) % 1 / (1 + (i - j) * .18);
+        x.fillStyle = `rgba(${i == j ? 94 : 124},${i == j ? 234 : 178},${i == j ? 212 : 255},${.08 + v * .9})`;
+        x.fillRect(ox + j * s, oy + i * s, s - 2, s - 2);
+      }
+      x.fillStyle = "#9aa7bd"; x.fillText("QUBO matrix Q · 24 binary variables", ox, oy - 12);
     }
-  }, { threshold: .1 });
-  o.observe(el);
-});
+    if (k == "mit") {
+      const f = (m) => {
+        x.beginPath();
+        for (let i = 0; i <= 200; i++) {
+          const t = i / 200, y = Math.sin(t * 9) * .7 * (1 - t * .2), v = y * m + (m < 1 ? Math.sin(t * 90) * .03 : Math.sin(t * 90) * .16 * (t + .3));
+          x.lineTo(60 + t * 680, 250 - v * 170);
+        }
+        x.stroke();
+      };
+      x.lineWidth = 2; x.strokeStyle = "#5a6a88"; f(.6); x.strokeStyle = "#5eead4"; f(.99);
+      x.fillStyle = "#9aa7bd"; x.fillText("noisy expectation value", 70, 40);
+      x.fillStyle = "#5eead4"; x.fillText("mitigated by the stacked ensemble (illustration)", 70, 66);
+    }
+    if (k == "apex") {
+      const l = [["UV luminescent layer", "#7cb2ff"], ["Thermoelectric harvesting layer", "#f4b860"], ["Self-cleaning anti-reflection nanocoating", "#5eead4"], ["Solar cell", "#22345c"]];
+      l.forEach((q, i) => {
+        x.fillStyle = q[1]; x.globalAlpha = .85; x.fillRect(120, 90 + i * 80, 560, 58);
+        x.globalAlpha = 1; x.fillStyle = i == 3 ? "#e9eef7" : "#06101c";
+        x.fillText(q[0], 140, 125 + i * 80);
+      });
+      x.fillStyle = "#f4b860"; x.fillText("☀ 60 °C+", 40, 60);
+      x.fillStyle = "#9aa7bd"; x.fillText("APEX screen concept (schematic)", 120, 60);
+    }
+  });
 
-/* Bloch sphere Simulation */
+  /* Contact form Web3Forms integration */
+  const f = document.getElementById("cf");
+  if (f) f.onsubmit = async e => {
+    e.preventDefault();
+    const s = document.getElementById("fs"), d = new FormData(f);
+    if (d.get("botcheck")) return;
+    if (!C.formKey) {
+      location.href = `mailto:${C.email}?subject=${encodeURIComponent("Message from " + d.get("name"))}&body=${encodeURIComponent(d.get("message") + "\n\n" + d.get("email"))}`;
+      return;
+    }
+    d.append("access_key", C.formKey);
+    d.append("subject", "New message from your website");
+    s.textContent = "Sending…";
+    try {
+      const r = await (await fetch("https://api.web3forms.com/submit", { method: "POST", body: d })).json();
+      s.style.color = r.success ? "#5eead4" : "#ff8a8a";
+      s.textContent = r.success ? "Thank you. Your message is on its way to Hossam." : "Could not send. Please email " + C.email;
+      if (r.success) f.reset();
+    } catch (_) {
+      s.style.color = "#ff8a8a";
+      s.textContent = "Network error. Please email " + C.email;
+    }
+  };
+};
+
+/* Execute DOM initialization safe check */
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initDOM);
+} else {
+  initDOM();
+}
+
+/* Bloch sphere Simulation with Dynamic Theme Support */
 (function() {
   const c = document.getElementById("bloch");
   if (!c) return;
@@ -82,6 +156,7 @@ document.querySelectorAll(".rv").forEach(el => {
   addEventListener("resize", fit);
 
   function draw(t) {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
     const W = c.width, R = W * .36, cx = W / 2, cy = W / 2, a = t * .0002, b = .42, ca = Math.cos(a), sa = Math.sin(a), cb = Math.cos(b), sb = Math.sin(b);
     const p = (X, Y, Z) => {
       const x1 = X * ca + Z * sa, z1 = -X * sa + Z * ca;
@@ -89,6 +164,12 @@ document.querySelectorAll(".rv").forEach(el => {
     };
     x.clearRect(0, 0, W, W);
     x.lineWidth = d;
+
+    // Rings colors depending on mode
+    const ring1Col = isLight ? "rgba(2, 132, 199, " : "rgba(124,178,255,";
+    const ring2Col = isLight ? "rgba(13, 148, 136, " : "rgba(94,234,212,";
+    const ring3Col = isLight ? "rgba(71, 85, 105, " : "rgba(154,167,189,";
+
     const ring = (f, col) => {
       for (let i = 0; i < 120; i++) {
         const u = i / 120 * 6.2832, v = (i + 1) / 120 * 6.2832, s = p(...f(u)), e = p(...f(v));
@@ -96,40 +177,44 @@ document.querySelectorAll(".rv").forEach(el => {
         x.beginPath(); x.moveTo(s[0], s[1]); x.lineTo(e[0], e[1]); x.stroke();
       }
     };
-    ring(u => [Math.cos(u), 0, Math.sin(u)], "rgba(124,178,255,");
-    ring(u => [Math.cos(u), Math.sin(u), 0], "rgba(94,234,212,");
-    ring(u => [0, Math.sin(u), Math.cos(u)], "rgba(154,167,189,");
+    ring(u => [Math.cos(u), 0, Math.sin(u)], ring1Col);
+    ring(u => [Math.cos(u), Math.sin(u), 0], ring2Col);
+    ring(u => [0, Math.sin(u), Math.cos(u)], ring3Col);
 
-    x.strokeStyle = "rgba(233,238,247,.35)";
+    // Axes lines
+    x.strokeStyle = isLight ? "rgba(15, 23, 42, 0.45)" : "rgba(233,238,247,.35)";
     [[0, 1.2, 0], [0, -1.2, 0], [1.2, 0, 0], [-1.2, 0, 0], [0, 0, 1.2], [0, 0, -1.2]].forEach(v => {
       const o = p(0, 0, 0), e = p(...v);
       x.beginPath(); x.moveTo(o[0], o[1]); x.lineTo(e[0], e[1]); x.stroke();
     });
 
-    x.fillStyle = "#e9eef7";
-    x.font = `${16 * d}px Inter,sans-serif`;
+    // Qubit States text (|0⟩, |1⟩)
+    x.fillStyle = isLight ? "#0f172a" : "#e9eef7";
+    x.font = `bold ${16 * d}px Inter,sans-serif`;
     const z = p(0, 1.32, 0), o1 = p(0, -1.32, 0);
     x.fillText("|0⟩", z[0] - 10 * d, z[1]);
     x.fillText("|1⟩", o1[0] - 10 * d, o1[1] + 12 * d);
 
+    // Precession vector
     const th = 1.05 + .25 * Math.sin(t * .0007), ph = t * .0016, s = p(Math.sin(th) * Math.cos(ph), Math.cos(th), Math.sin(th) * Math.sin(ph));
     tr.push(s);
     if (tr.length > 70) tr.shift();
 
+    const dotTrailCol = isLight ? "13, 148, 136" : "94,234,212";
     tr.forEach((q, i) => {
-      x.fillStyle = `rgba(94,234,212,${i / tr.length * .6})`;
+      x.fillStyle = `rgba(${dotTrailCol},${i / tr.length * .6})`;
       x.beginPath(); x.arc(q[0], q[1], (1 + i / 25) * d, 0, 6.3); x.fill();
     });
 
     const g = x.createLinearGradient(cx, cy, s[0], s[1]);
-    g.addColorStop(0, "#7cb2ff");
-    g.addColorStop(1, "#fff");
+    g.addColorStop(0, isLight ? "#0284c7" : "#7cb2ff");
+    g.addColorStop(1, isLight ? "#0f172a" : "#fff");
     x.strokeStyle = g;
     x.lineWidth = 2.4 * d;
     x.beginPath(); x.moveTo(cx, cy); x.lineTo(s[0], s[1]); x.stroke();
 
-    x.fillStyle = "#fff";
-    x.shadowColor = "#5eead4";
+    x.fillStyle = isLight ? "#0f172a" : "#fff";
+    x.shadowColor = isLight ? "#0d9488" : "#5eead4";
     x.shadowBlur = 18 * d;
     x.beginPath(); x.arc(s[0], s[1], 6 * d, 0, 6.3); x.fill();
     x.shadowBlur = 0;
@@ -137,65 +222,3 @@ document.querySelectorAll(".rv").forEach(el => {
   }
   requestAnimationFrame(draw);
 })();
-
-/* Research figures drawn on Canvas */
-document.querySelectorAll("canvas[data-art]").forEach(c => {
-  const x = c.getContext("2d"), W = c.width = 800, H = c.height = 500, k = c.dataset.art;
-  x.fillStyle = "#0a1020"; x.fillRect(0, 0, W, H); x.font = "15px Inter,sans-serif";
-  if (k == "qubo") {
-    const n = 24, s = 17, ox = (W - n * s) / 2, oy = (H - n * s) / 2;
-    for (let i = 0; i < n; i++) for (let j = 0; j <= i; j++) {
-      const v = Math.abs(Math.sin(i * 12.99 + j * 78.2) * 43758) % 1 / (1 + (i - j) * .18);
-      x.fillStyle = `rgba(${i == j ? 94 : 124},${i == j ? 234 : 178},${i == j ? 212 : 255},${.08 + v * .9})`;
-      x.fillRect(ox + j * s, oy + i * s, s - 2, s - 2);
-    }
-    x.fillStyle = "#9aa7bd"; x.fillText("QUBO matrix Q · 24 binary variables", ox, oy - 12);
-  }
-  if (k == "mit") {
-    const f = (m) => {
-      x.beginPath();
-      for (let i = 0; i <= 200; i++) {
-        const t = i / 200, y = Math.sin(t * 9) * .7 * (1 - t * .2), v = y * m + (m < 1 ? Math.sin(t * 90) * .03 : Math.sin(t * 90) * .16 * (t + .3));
-        x.lineTo(60 + t * 680, 250 - v * 170);
-      }
-      x.stroke();
-    };
-    x.lineWidth = 2; x.strokeStyle = "#5a6a88"; f(.6); x.strokeStyle = "#5eead4"; f(.99);
-    x.fillStyle = "#9aa7bd"; x.fillText("noisy expectation value", 70, 40);
-    x.fillStyle = "#5eead4"; x.fillText("mitigated by the stacked ensemble (illustration)", 70, 66);
-  }
-  if (k == "apex") {
-    const l = [["UV luminescent layer", "#7cb2ff"], ["Thermoelectric harvesting layer", "#f4b860"], ["Self-cleaning anti-reflection nanocoating", "#5eead4"], ["Solar cell", "#22345c"]];
-    l.forEach((q, i) => {
-      x.fillStyle = q[1]; x.globalAlpha = .85; x.fillRect(120, 90 + i * 80, 560, 58);
-      x.globalAlpha = 1; x.fillStyle = i == 3 ? "#e9eef7" : "#06101c";
-      x.fillText(q[0], 140, 125 + i * 80);
-    });
-    x.fillStyle = "#f4b860"; x.fillText("☀ 60 °C+", 40, 60);
-    x.fillStyle = "#9aa7bd"; x.fillText("APEX screen concept (schematic)", 120, 60);
-  }
-});
-
-/* Contact form Web3Forms integration */
-const f = document.getElementById("cf");
-if (f) f.onsubmit = async e => {
-  e.preventDefault();
-  const s = document.getElementById("fs"), d = new FormData(f);
-  if (d.get("botcheck")) return;
-  if (!C.formKey) {
-    location.href = `mailto:${C.email}?subject=${encodeURIComponent("Message from " + d.get("name"))}&body=${encodeURIComponent(d.get("message") + "\n\n" + d.get("email"))}`;
-    return;
-  }
-  d.append("access_key", C.formKey);
-  d.append("subject", "New message from your website");
-  s.textContent = "Sending…";
-  try {
-    const r = await (await fetch("https://api.web3forms.com/submit", { method: "POST", body: d })).json();
-    s.style.color = r.success ? "#5eead4" : "#ff8a8a";
-    s.textContent = r.success ? "Thank you. Your message is on its way to Hossam." : "Could not send. Please email " + C.email;
-    if (r.success) f.reset();
-  } catch (_) {
-    s.style.color = "#ff8a8a";
-    s.textContent = "Network error. Please email " + C.email;
-  }
-};
