@@ -1,12 +1,201 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hossam Magdy | Portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hossam Mohamed Magdy | Physics Researcher</title>
+<meta name="description" content="Personal research website of Hossam Mohamed Magdy, physicist working on quantum optimization, machine-learning simulation of materials and quantum hardware.">
+<meta property="og:title" content="Hossam Mohamed Magdy | Physics Researcher">
+<meta property="og:description" content="Quantum optimization, computational materials physics and device design.">
+<meta name="theme-color" content="#1f5fa8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--fg:#1c2530;--mut:#5b6673;--line:#e3e7ec;--soft:#f4f6f9;--acc:#1f5fa8;--sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:"Source Serif 4",Georgia,serif}
+[data-theme=dark]{--bg:#0f141a;--fg:#e6eaef;--mut:#9aa5b1;--line:#252d37;--soft:#161d25;--acc:#7db4f0}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:56px}
+.brand{font-weight:600;color:var(--fg);white-space:nowrap}
+.links{margin-left:auto;display:flex;gap:18px;overflow-x:auto;scrollbar-width:none;font-size:14.5px}
+.links::-webkit-scrollbar{display:none}
+.links a{color:var(--mut);white-space:nowrap;padding:4px 0;border-bottom:2px solid transparent}
+.links a:hover,.links a.on{color:var(--fg);border-color:var(--acc);text-decoration:none}
+#mode{background:none;border:1px solid var(--line);color:var(--mut);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
+header{padding:72px 0 40px}
+.hero{display:grid;grid-template-columns:150px 1fr;gap:36px;align-items:center}
+.ph{width:150px;height:150px;border-radius:50%;background:var(--soft) radial-gradient(circle at 30% 25%,var(--line),var(--soft));border:1px solid var(--line);display:grid;place-items:center;font:600 42px var(--serif);color:var(--mut);overflow:hidden;position:relative}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+h1{font:600 clamp(32px,5vw,46px)/1.1 var(--serif);margin:0 0 6px;letter-spacing:-.01em}
+.role{color:var(--mut);margin:0 0 16px}
+.lead{font:500 19px/1.55 var(--serif);margin:0 0 16px;max-width:60ch}
+.now{font-size:14.5px;color:var(--mut);border-left:3px solid var(--acc);padding-left:12px;margin:0 0 20px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:7px 15px;border:1px solid var(--line);border-radius:8px;color:var(--fg);font-size:14px;font-weight:500;background:var(--bg)}
+.btn.p{background:var(--acc);border-color:var(--acc);color:var(--bg)}
+.btn:hover{text-decoration:none;border-color:var(--acc)}
+.hero>*{animation:in .7s both}.hero>*:last-child{animation-delay:.12s}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){.hero>*{animation:none}}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font:600 28px/1.2 var(--serif);margin:0 0 4px}
+.sub{color:var(--mut);margin:0 0 32px}
+h3{font:600 19px/1.35 var(--serif);margin:0 0 6px}
+.card{display:grid;grid-template-columns:1fr 240px;gap:28px;padding:26px 0;border-top:1px solid var(--line)}
+.card:first-of-type{border-top:0;padding-top:0}
+.meta{font-size:13.5px;color:var(--mut);margin:0 0 10px}
+.card p{margin:0 0 10px}
+.fig{margin:0;height:170px;border:1px solid var(--line);border-radius:10px;background:repeating-linear-gradient(45deg,var(--soft),var(--soft) 10px,var(--bg) 10px,var(--bg) 20px);position:relative;overflow:hidden;align-self:start}
+.fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--bg)}
+.row{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row b{font-weight:600}.row span{color:var(--mut);font-size:14.5px}
+.yr{color:var(--mut);font-size:14px;font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:26px}
+.grid h3{font:600 15px var(--sans);margin-bottom:4px}.grid p{margin:0;color:var(--mut);font-size:15px}
+blockquote{margin:0 0 22px;padding-left:18px;border-left:3px solid var(--line);font:500 18px/1.55 var(--serif)}
+blockquote cite{display:block;font:14px var(--sans);color:var(--mut);margin-top:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mut);font-size:14px}
+@media(max-width:760px){.hero{grid-template-columns:1fr;gap:20px}.ph{width:104px;height:104px;font-size:30px}.card{grid-template-columns:1fr}.fig{order:-1;height:150px}.two{grid-template-columns:1fr;gap:0}.brand{display:none}header{padding-top:40px}}
+</style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
-    <h1>أهلاً بك في موقعي الشخصي</h1>
-    <p>جاري تطوير البورتفوليو...</p>
+<body>
+<nav><div class="wrap">
+<a class="brand" href="#top">Hossam M. Magdy</a>
+<div class="links" id="nav"><a href="#about">About</a><a href="#research">Research</a><a href="#training">Training</a><a href="#honours">Honours</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a href="files/cv.pdf">CV</a></div>
+<button id="mode" aria-label="Toggle light and dark theme">◐</button>
+</div></nav>
+
+<header id="top"><div class="wrap hero">
+<div class="ph" aria-hidden="true">HM<img src="img/hossam.jpg" alt="" onerror="this.remove()"></div>
+<div>
+<h1>Hossam Mohamed Magdy</h1>
+<p class="role">Physicist · BSc Physics, Aswan University (2026)</p>
+<p class="lead">How do we build quantum technology that works in the lab, not only in theory? I work between computation and hardware: quantum optimization, machine-learning simulation of materials, and device design.</p>
+<p class="now"><b>Currently:</b> applying for MSc/PhD positions in quantum hardware, advanced materials and quantum soft robotics.</p>
+<div class="btns"><a class="btn p" href="#research">Selected research</a><a class="btn" href="files/cv.pdf">Download CV</a><a class="btn" href="#contact">Contact</a></div>
+</div>
+</div></header>
+
+<main class="wrap">
+
+<section id="about">
+<h2>About</h2><p class="sub">Aswan, Egypt</p>
+<div class="two"><div>
+<p>My interest in physics began in preparatory school with a lesson on the atom, and grew after a Russian nuclear-physics textbook my brother brought home. When university scholarships in other fields were on offer, I chose pure physics, and quantum mechanics led me to quantum computing.</p>
+<p>I graduate in August 2026 with a cumulative 88.65% (Excellent with Honours) and a record of research on quantum optimization, atomistic simulation and solar-energy devices. I am interested in problems where the measure of success is a device that works, and where the uncertainty of a result is reported alongside the result.</p>
+</div><div>
+<p><b>Research interests</b></p>
+<p><b>Quantum control and optimization.</b> QUBO formulations and variational algorithms (QAOA, VQE) for control problems, including quantum soft robotics.</p>
+<p><b>Computational materials physics.</b> Machine-learning force fields, uncertainty quantification and molecular dynamics for surfaces and adsorption.</p>
+<p><b>Quantum hardware and energy devices.</b> Noise and error mitigation, and multiphysics design of functional devices.</p>
+</div></div>
+</section>
+
+<section id="research">
+<h2>Selected research</h2><p class="sub">Projects with a question, a method and a result.</p>
+
+<article class="card"><div>
+<h3>Linear-ramp and warm-start QAOA for trajectory control of multi-actuator soft catheters</h3>
+<p class="meta">Undergraduate thesis · Supervisor: Dr. Mohamed Gaber · 2025–2026</p>
+<p>Trajectory tracking for a multi-actuator soft catheter is cast as a QUBO problem, with the reduction checked numerically. On a 24-qubit statevector simulation I benchmark classical MPC, simulated annealing, full-parameter QAOA, linear-ramp QAOA and warm-start QAOA, then extend the scheme to closed-loop receding-horizon control under hysteresis.</p>
+<p>Simulation study; the actuator model is not experimentally calibrated.</p>
+<!-- add: <a class="btn" href="GITHUB_URL">Code</a> and a results sentence once verified -->
+</div><figure class="fig"><img src="img/qaoa.png" alt="QAOA trajectory tracking comparison" onerror="this.remove()"></figure></article>
+
+<article class="card"><div>
+<h3>Adsorption of HgO on Au(111): a dual machine-learning force-field benchmark</h3>
+<p class="meta">JINR, INTEREST programme (remote) · Dr. Dipayan Sen, Dr. Miroslav Iliaš · 2026</p>
+<p>CHGNet and MACE-MP-0 across the four high-symmetry sites of a 4×4×5 Au(111) slab. The bridge site has the lowest adsorption energy (−2.04 eV), but the 75 meV spread between sites is smaller than the ensemble uncertainty (about 216 meV), so no site is statistically resolved. The two models differ by 601 meV at the on-top site. Vibrational, free-energy and Langevin MD analyses complete the study.</p>
+<p class="links2"><a class="btn" href="https://lnkd.in/dU4P5HCd">Project report</a></p>
+</div><figure class="fig"><img src="img/hgo.png" alt="HgO adsorption energies and uncertainty" onerror="this.remove()"></figure></article>
+
+<article class="card"><div>
+<h3>APEX: a multifunctional protective screen for solar panels in extreme heat</h3>
+<p class="meta">With Prof. Ayman El-Amin · 2023–2024</p>
+<p>A transparent multilayer screen combining a luminescent layer, integrated thermoelectric harvesting and a self-cleaning anti-reflection nanocoating, modelled in COMSOL for Aswan's 60 °C+ conditions. Winner of the Nile Innovation Pre-Incubation Competition (2024, 30,000 EGP prototype funding); proceeding to patent registration.</p>
+</div><figure class="fig"><img src="img/apex.png" alt="APEX screen concept" onerror="this.remove()"></figure></article>
+
+<h3 style="margin-top:20px">More work</h3>
+<div class="row"><span class="yr">2026</span><div><b>Machine-learning stacking ensemble for quantum error mitigation</b><br><span>Team of five, Pan-African Quantum Challenge 2025 (AQC × Aqora): XGBoost, LSTM and random forest trained on simulated noisy circuits (depolarizing, amplitude damping, readout). My contribution: <em>to be specified</em>.</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Physics-informed neural network for lead-free perovskite screening</b><br><span>Award-winning undergraduate project built on the Perovskite Database (1,181 devices). <!-- hold quantitative claims until R² and PCE figures are re-validated --></span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>CO₂–NH₃ reaction pathways with VQE on IBM hardware</b><br><span>National quantum hackathon, Bibliotheca Alexandrina (OQI, qBraid); team project.</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Flood and desertification risk prototype, Marsa Matrouh</b><br><span>Desert Research Center training, first place among teams (5,000 EGP seed grant). Prototype pipeline built on synthetic data.</span></div></div>
+</section>
+
+<section id="training">
+<h2>Training and programmes</h2><p class="sub">Selective programmes and schools.</p>
+<div class="row"><span class="yr">2026</span><div><b>MCQST Summer Bachelor Program, Prof. Frank Pollmann's group (TU Munich)</b><br><span>Selected; unable to attend for personal circumstances.</span></div></div>
+<div class="row"><span class="yr">2026</span><div><b>ICTP African School of Fundamental Physics (ASP2026), Nairobi</b><br><span>Fully funded scholar (169 admitted from 436 applicants); attended online.</span></div></div>
+<div class="row"><span class="yr">2026</span><div><b>MIT iQuHACK</b><br><span>Remote hackathon participant.</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Quantum Education Summit, Barcelona</b><br><span>One of four international scholars (Catalonia Quantum Academy at ICFO, SPIE).</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Ingenii Experiential Quantum Immersion Program</b><br><span>Ambassadorship scholarship recipient, Fall 2025 cohort; 12-week quantum machine learning programme.</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Summer school, Center for Theoretical Physics, British University in Egypt</b><br><span>General relativity, cosmology, QFT, quantum computing and QML, with a small team project.</span></div></div>
+<div class="row"><span class="yr">2025</span><div><b>Also completed</b><br><span>IBM Qiskit Global Summer School · Princeton Plasma Physics Laboratory, plasma and fusion course · UC Berkeley Python for Physics · QWorld QBronze.</span></div></div>
+</section>
+
+<section id="honours">
+<h2>Honours and leadership</h2><p class="sub">Awards, and work beyond the lab.</p>
+<div class="row"><span class="yr">2025</span><div><b>Best undergraduate research project, Aswan University</b><br><span>First place across all faculties; recognised as top student researcher.</span></div></div>
+<div class="row"><span class="yr">2022–26</span><div><b>Dean's List every year; Excellence award 2026</b></div></div>
+<div class="row"><span class="yr">2024</span><div><b>Winner, Nile Innovation Pre-Incubation · Finalist, Innovation Olympics</b></div></div>
+<div class="row"><span class="yr">2024</span><div><b>Top 3, national entrepreneurship bootcamp (US Embassy, Amideast)</b></div></div>
+<div class="row"><span class="yr">2024–25</span><div><b>Founder, Masira Advocacy Club (British Council)</b><br><span>Rural girls' education; policy paper submitted to the Egyptian Ministry of Education.</span></div></div>
+<div class="row"><span class="yr">2026</span><div><b>In Situ Graduate School, "Mapping the Upper Nile" (IIAS, Aswan)</b><br><span>Local participant, with a team of local and international researchers.</span></div></div>
+<div class="row"><span class="yr"></span><div><b>Research Team Leader, Undergraduate Researchers Initiative · Ambassador, Center for Open Science Egypt</b><br><span>Mentoring junior researchers; 10+ reproducible-research training sessions.</span></div></div>
+</section>
+
+<section id="skills">
+<h2>Methods and skills</h2><p class="sub">Only tools I have used in projects.</p>
+<div class="grid">
+<div><h3>Quantum computing</h3><p>Qiskit, Cirq, PennyLane, D-Wave Ocean (quantum annealing), VQE, QAOA, noise and error mitigation</p></div>
+<div><h3>Computational physics</h3><p>ASE, CHGNet, MACE-MP-0, molecular dynamics, statevector simulation, uncertainty quantification</p></div>
+<div><h3>Machine learning</h3><p>PyTorch, scikit-learn, XGBoost, physics-informed networks</p></div>
+<div><h3>Simulation and design</h3><p>COMSOL Multiphysics, MATLAB, Onshape, laser cutting, 3D printing</p></div>
+<div><h3>Laboratory</h3><p>120+ undergraduate lab sessions, including Geiger–Müller radiation spectroscopy and an advanced Mössbauer course</p></div>
+<div><h3>Languages</h3><p>Arabic (native), English (full professional), French (basic)</p></div>
+</div>
+</section>
+
+<!-- Show only with each professor's written permission -->
+<section id="endorsements">
+<h2>Endorsements</h2><p class="sub">Full letters available on request.</p>
+<blockquote>"Hossam does not wait for opportunities. He creates them."<cite>Dr. Ibrahim Ali, Professor of Physics, Aswan University</cite></blockquote>
+<blockquote>"He is a prototype of the modern physicist-inventor."<cite>Prof. Ayman El-Amin, Head of Physics, Aswan University</cite></blockquote>
+<blockquote>"Top 1% I have encountered in intellectual maturity, cognitive flexibility, and research potential."<cite>Prof. Amal Hemdan, Theoretical Physics, Aswan University</cite></blockquote>
+</section>
+
+<section id="contact">
+<h2>Contact</h2><p class="sub">Open to MSc and PhD positions and research collaborations.</p>
+<div class="btns"><a class="btn p" href="mailto:hossammagdy570@gmail.com">hossammagdy570@gmail.com</a><a class="btn" href="https://www.linkedin.com/in/hossammohamedmagdy/">LinkedIn</a><a class="btn" href="files/cv.pdf">CV (PDF)</a></div>
+<!-- add GitHub, ORCID and Google Scholar buttons here when the profiles exist -->
+</section>
+</main>
+
+<footer><div class="wrap">© 2026 Hossam Mohamed Magdy · Aswan, Egypt</div></footer>
+
+<script>
+(function(){
+var r=document.documentElement,k="theme",t=null;
+try{t=localStorage.getItem(k)}catch(e){}
+if(!t)t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+r.setAttribute("data-theme",t);
+document.getElementById("mode").onclick=function(){
+t=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",t);
+try{localStorage.setItem(k,t)}catch(e){}};
+var L=[].slice.call(document.querySelectorAll("#nav a[href^='#']")),S=L.map(function(a){return document.querySelector(a.hash)});
+function spy(){var y=scrollY+90,c=-1;S.forEach(function(s,i){if(s&&s.offsetTop<=y)c=i});L.forEach(function(a,i){a.classList.toggle("on",i===c)})}
+addEventListener("scroll",spy,{passive:true});spy();
+})();
+</script>
 </body>
 </html>
