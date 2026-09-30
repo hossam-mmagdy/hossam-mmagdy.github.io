@@ -17,7 +17,7 @@ const P = {
 
 const ic = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`;
 
-/* Theme Toggle Logic - Runs immediately to prevent flash of wrong theme */
+/* Theme Toggle Logic */
 const initTheme = () => {
   const savedTheme = localStorage.getItem("theme") || "dark";
   document.documentElement.setAttribute("data-theme", savedTheme);
@@ -41,11 +41,9 @@ const so = () => `<div class="so">
 
 /* Main DOM Initialization */
 const initDOM = () => {
-  /* Safely get page identifier */
   const pg = (document.body && document.body.dataset.p) ? document.body.dataset.p : "";
   const L = [["index.html", "Home"], ["research.html", "Research"], ["journey.html", "Journey"], ["contact.html", "Contact"]];
 
-  /* Header Generation */
   const navEl = document.getElementById("nav");
   if (navEl) {
     const isLight = document.documentElement.getAttribute("data-theme") === "light";
@@ -59,13 +57,11 @@ const initDOM = () => {
     </div>`;
   }
 
-  /* Footer Generation */
   const ftEl = document.getElementById("ft");
   if (ftEl) {
     ftEl.innerHTML = `<div class="w"><span>© 2026 Hossam Mohamed · Aswan, Egypt</span>${so()}</div>`;
   }
 
-  /* Intersection Observer for Animations */
   document.querySelectorAll(".rv").forEach(el => {
     const o = new IntersectionObserver(e => {
       if (e[0].isIntersecting) {
@@ -76,7 +72,6 @@ const initDOM = () => {
     o.observe(el);
   });
 
-  /* Research figures drawn on Canvas */
   document.querySelectorAll("canvas[data-art]").forEach(c => {
     const x = c.getContext("2d"), W = c.width = 800, H = c.height = 500, k = c.dataset.art;
     x.fillStyle = "#0a1020"; x.fillRect(0, 0, W, H); x.font = "15px Inter,sans-serif";
@@ -114,7 +109,6 @@ const initDOM = () => {
     }
   });
 
-  /* Contact form Web3Forms integration */
   const f = document.getElementById("cf");
   if (f) f.onsubmit = async e => {
     e.preventDefault();
@@ -139,14 +133,13 @@ const initDOM = () => {
   };
 };
 
-/* Execute DOM initialization safe check */
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initDOM);
 } else {
   initDOM();
 }
 
-/* Bloch sphere Simulation with Dynamic Theme Support */
+/* Bloch sphere Simulation */
 (function() {
   const c = document.getElementById("bloch");
   if (!c) return;
@@ -165,7 +158,6 @@ if (document.readyState === "loading") {
     x.clearRect(0, 0, W, W);
     x.lineWidth = d;
 
-    // Rings colors depending on mode
     const ring1Col = isLight ? "rgba(2, 132, 199, " : "rgba(124,178,255,";
     const ring2Col = isLight ? "rgba(13, 148, 136, " : "rgba(94,234,212,";
     const ring3Col = isLight ? "rgba(71, 85, 105, " : "rgba(154,167,189,";
@@ -181,21 +173,18 @@ if (document.readyState === "loading") {
     ring(u => [Math.cos(u), Math.sin(u), 0], ring2Col);
     ring(u => [0, Math.sin(u), Math.cos(u)], ring3Col);
 
-    // Axes lines
     x.strokeStyle = isLight ? "rgba(15, 23, 42, 0.45)" : "rgba(233,238,247,.35)";
     [[0, 1.2, 0], [0, -1.2, 0], [1.2, 0, 0], [-1.2, 0, 0], [0, 0, 1.2], [0, 0, -1.2]].forEach(v => {
       const o = p(0, 0, 0), e = p(...v);
       x.beginPath(); x.moveTo(o[0], o[1]); x.lineTo(e[0], e[1]); x.stroke();
     });
 
-    // Qubit States text (|0⟩, |1⟩)
     x.fillStyle = isLight ? "#0f172a" : "#e9eef7";
     x.font = `bold ${16 * d}px Inter,sans-serif`;
     const z = p(0, 1.32, 0), o1 = p(0, -1.32, 0);
     x.fillText("|0⟩", z[0] - 10 * d, z[1]);
     x.fillText("|1⟩", o1[0] - 10 * d, o1[1] + 12 * d);
 
-    // Precession vector
     const th = 1.05 + .25 * Math.sin(t * .0007), ph = t * .0016, s = p(Math.sin(th) * Math.cos(ph), Math.cos(th), Math.sin(th) * Math.sin(ph));
     tr.push(s);
     if (tr.length > 70) tr.shift();
