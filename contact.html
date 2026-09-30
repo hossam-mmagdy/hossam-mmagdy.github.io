@@ -1,4 +1,60 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact | Hossam Mohamed Magdy</title><meta name="description" content="Send a message to Hossam Mohamed Magdy."><meta property="og:title" content="Contact | Hossam Mohamed Magdy"><meta name="theme-color" content="#070b14"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body data-p="contact.html"><header id="nav"></header><main>
-<div class="w two" style="padding:72px 24px 96px;gap:72px"><div><h1>Let's talk</h1><p class="sub">Questions about my research, graduate opportunities or collaboration: write here and it reaches my inbox directly.</p>
-<p><a href="mailto:hossammagdy570@gmail.com">hossammagdy570@gmail.com</a><br><a href="https://www.linkedin.com/in/hossammohamedmagdy/" target="_blank" rel="noopener">linkedin.com/in/hossammohamedmagdy</a><br><a href="files/cv.pdf">Download my CV (PDF)</a></p></div>
-<form id="cf"><label>Your name<input name="name" required autocomplete="name"></label><label>Your email<input name="email" type="email" required autocomplete="email"></label><label>Message<textarea name="message" rows="6" required></textarea></label><input type="checkbox" name="botcheck" tabindex="-1" style="display:none"><button class="bt p" type="submit">Send message</button><div id="fs" role="status"></div></form></div></main><footer id="ft"></footer><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Hossam Mohamed Magdy</title>
+  <meta name="description" content="Send a message to Hossam Mohamed Magdy.">
+  <meta property="og:title" content="Contact | Hossam Mohamed Magdy">
+  <meta name="theme-color" content="#070b14">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Anti-flicker script for Theme Switcher -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    })();
+  </script>
+</head>
+<body data-p="contact.html">
+  <header id="nav"></header>
+
+  <main>
+    <div class="w two" style="padding: 72px 24px 96px; gap: 72px;">
+      <div>
+        <h1>Let's talk</h1>
+        <p class="sub">Questions about my research, graduate opportunities or collaboration: write here and it reaches my inbox directly.</p>
+        <p>
+          <a href="mailto:hossammagdy570@gmail.com">hossammagdy570@gmail.com</a><br>
+          <a href="https://www.linkedin.com/in/hossammohamedmagdy/" target="_blank" rel="noopener">linkedin.com/in/hossammohamedmagdy</a><br>
+          <a href="files/cv.pdf">Download my CV (PDF)</a>
+        </p>
+      </div>
+
+      <form id="cf">
+        <label>Your name
+          <input name="name" required autocomplete="name">
+        </label>
+        <label>Your email
+          <input name="email" type="email" required autocomplete="email">
+        </label>
+        <label>Message
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+        <input type="checkbox" name="botcheck" tabindex="-1" style="display: none;">
+        <button class="bt p" type="submit">Send message</button>
+        <div id="fs" role="status"></div>
+      </form>
+    </div>
+  </main>
+
+  <footer id="ft"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
